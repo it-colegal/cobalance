@@ -16,7 +16,7 @@ if (!function_exists('render_menu_tree')) {
         echo '<ul style="list-style:none;margin:0;padding:0;display:flex;gap:12px;align-items:flex-start;">';
         foreach ($items as $m) {
             $label = htmlspecialchars((string)$m['nama_menu'], ENT_QUOTES, 'UTF-8');
-            $route = !empty($m['route']) ? site_url($m['route']) : '#';
+            $route = !empty($m['route_path']) ? site_url($m['route_path']) : '#';
 
             echo '<li style="position:relative;">';
             echo '<a href="'.$route.'">'.$label.'</a>';
@@ -25,7 +25,7 @@ if (!function_exists('render_menu_tree')) {
                 echo '<ul style="list-style:none;margin:6px 0 0 0;padding:8px;border:1px solid #ddd;">';
                 foreach ($m['children'] as $c) {
                     $clabel = htmlspecialchars((string)$c['nama_menu'], ENT_QUOTES, 'UTF-8');
-                    $croute = !empty($c['route']) ? site_url($c['route']) : '#';
+                    $croute = !empty($c['route_path']) ? site_url($c['route_path']) : '#';
                     echo '<li style="margin:4px 0;"><a href="'.$croute.'">'.$clabel.'</a></li>';
                 }
                 echo '</ul>';
