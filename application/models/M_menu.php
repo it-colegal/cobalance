@@ -13,7 +13,7 @@ class M_menu extends CI_Model
         // - app_menu: id_menu, menu_key, parent_id, nama_menu, route_path, icon_key, urutan,
         //             is_system_scope, is_tenant_scope, is_active
         // - app_permission: id_permission, id_menu, permission_key, action_key, is_active
-        // - app_role_permission: id_role_permission, id_role, id_permission, allowed, is_active
+        // - app_role_permission: id_role_permission, id_role, id_permission, allowed, created_at, updated_at
 
         $params = array();
         
@@ -44,7 +44,6 @@ class M_menu extends CI_Model
                 ON rp.id_role = rr.id_role
                AND rp.id_permission = p.id_permission
                AND COALESCE(rp.allowed,1) = 1
-               AND COALESCE(rp.is_active,1) = 1
             WHERE
                 COALESCE(m.is_active,1) = 1
                 AND {$scopeWhere}
