@@ -7,12 +7,15 @@ class Neraca extends MY_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->require_login();
         $this->load->model('M_neraca', 'neraca');
         $this->load->helper('url');
     }
 
     public function index()
     {
+        $this->require_tenant_scope();
+        
         // Default end_date: hari ini
         $end_date = date('Y-m-d');
         $data['end_date'] = $end_date;
@@ -21,9 +24,7 @@ class Neraca extends MY_Controller
         $data['liabilitas'] = $data_sheet['liabilitas'];
         $data['ekuitas'] = $data_sheet['ekuitas'];
 
-        $this->load->view('template/header');
-        $this->load->view('neraca_view', $data);
-        $this->load->view('template/footer');
+        $this->render('neraca_view', $data);
     }
 
     public function ajax_get_neraca()
