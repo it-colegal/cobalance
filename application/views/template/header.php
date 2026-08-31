@@ -1,11 +1,11 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-$u = isset($current_user) ? $current_user : array();
-$role_scope = isset($u['role_scope']) ? $u['role_scope'] : 'tenant';
-$role_name  = isset($u['role_name']) ? $u['role_name'] : 'staff';
-$nama       = isset($u['nama_lengkap']) ? $u['nama_lengkap'] : '';
-$tenant     = isset($u['nama_perusahaan']) ? $u['nama_perusahaan'] : '';
+$user = isset($current_user) ? $current_user : array();
+$role_scope = isset($user['role_scope']) ? $user['role_scope'] : 'tenant';
+$role_name  = isset($user['role_name']) ? $user['role_name'] : 'staff';
+$nama       = isset($user['nama_lengkap']) ? $user['nama_lengkap'] : '';
+$tenant     = isset($user['nama_perusahaan']) ? $user['nama_perusahaan'] : '';
 $menus      = isset($menus) && is_array($menus) ? $menus : array();
 
 if (!function_exists('render_menu_tree')) {
