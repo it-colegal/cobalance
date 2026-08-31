@@ -10,13 +10,13 @@
 		<div class="panel panel-default">
 			<div class="panel-heading"><strong>Informasi Pengguna</strong></div>
 			<div class="panel-body">
-				<p><strong>Nama Lengkap:</strong> <?php echo $user['nama_lengkap']; ?>
+				<p><strong>Nama Lengkap:</strong> <?php echo isset($current_user['nama_lengkap']) ? $current_user['nama_lengkap'] : '-'; ?>
 				</p>
-				<p><strong>Username:</strong> <?php echo $user['username']; ?>
+				<p><strong>Username:</strong> <?php echo isset($current_user['username']) ? $current_user['username'] : '-'; ?>
 				</p>
-				<p><strong>Role:</strong> <?php echo ucfirst($user['role']); ?>
+				<p><strong>Role:</strong> <?php echo isset($current_user['role_name']) ? ucfirst($current_user['role_name']) : '-'; ?>
 				</p>
-				<p><strong>Perusahaan:</strong> <?php echo $user['nama_perusahaan']; ?>
+				<p><strong>Perusahaan:</strong> <?php echo isset($current_user['nama_perusahaan']) ? $current_user['nama_perusahaan'] : '-'; ?>
 				</p>
 			</div>
 		</div>
@@ -31,7 +31,7 @@
 			<div class="panel-heading">Total Akun</div>
 			<div class="panel-body text-center">
 				<h3>
-					<?php echo $total_akun; ?>
+					<?php echo isset($total_akun) ? $total_akun : 0; ?>
 				</h3>
 			</div>
 			<div class="panel-footer text-center">
@@ -46,7 +46,7 @@
 			<div class="panel-heading">Total Jurnal Transaksi</div>
 			<div class="panel-body text-center">
 				<h3>
-					<?php echo $total_jurnal; ?>
+					<?php echo isset($total_jurnal) ? $total_jurnal : 0; ?>
 				</h3>
 			</div>
 			<div class="panel-footer text-center">
