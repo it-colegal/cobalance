@@ -110,7 +110,7 @@
             "serverSide": true,
             "order": [[1, "asc"]],
             "ajax": {
-                "url": "<?php echo site_url('akun/ajax_list') ?>",
+                "url": "<?php echo site_url('master/akun/ajax_list') ?>",
                 "type": "POST"
             },
             "columnDefs": [
@@ -148,7 +148,7 @@
 
         // Load data via AJAX
         $.ajax({
-            url: "<?php echo site_url('akun/ajax_edit/') ?>/" + id,
+            url: "<?php echo site_url('master/akun/ajax_edit/') ?>/" + id,
             type: "GET",
             dataType: "JSON",
             success: function (data) {
@@ -169,8 +169,8 @@
     function save() {
         $('#btnSave').text('Menyimpan...');
         $('#btnSave').attr('disabled', true);
-        var url = (save_method == 'add') ? "<?php echo site_url('akun/ajax_add') ?>"
-            : "<?php echo site_url('akun/ajax_update') ?>";
+        var url = (save_method == 'add') ? "<?php echo site_url('master/akun/ajax_add') ?>"
+            : "<?php echo site_url('master/akun/ajax_update') ?>";
 
         // Proses simpan data via AJAX
         $.ajax({
@@ -195,7 +195,7 @@
     function delete_akun(id) {
         if (confirm('Apakah anda yakin ingin menghapus data ini?')) {
             $.ajax({
-                url: "<?php echo site_url('akun/ajax_delete') ?>/" + id,
+                url: "<?php echo site_url('master/akun/ajax_delete') ?>/" + id,
                 type: "POST",
                 dataType: "JSON",
                 success: function (data) {
