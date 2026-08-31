@@ -35,7 +35,7 @@
 				</h3>
 			</div>
 			<div class="panel-footer text-center">
-				<a href="<?php echo site_url('akun'); ?>">Lihat Detail</a>
+				<a href="<?php echo site_url('master/akun'); ?>">Lihat Detail</a>
 			</div>
 		</div>
 	</div>
