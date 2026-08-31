@@ -3,31 +3,26 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Dashboard extends MY_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->require_login();
+    }
 
-	public function __construct()
-	{
-		parent::__construct();
-		// Load model untuk mengambil data summary
-		$this->load->model('M_akun', 'akun');
-		$this->load->model('M_jurnal', 'jurnal');
-	}
+    public function index()
+    {
+        $scope = (string)$this->session->userdata('role_scope');
+        $role_name = (string)$this->session->userdata('role_name');
 
-	public function index()
-	{
-		// Ambil data user dari session
-		$data['user'] = array(
-			'username' => $this->session->userdata('username'),
-			'nama_lengkap' => $this->session->userdata('nama_lengkap'),
-			'role' => $this->session->userdata('role'),
-			'nama_perusahaan' => $this->session->userdata('nama_perusahaan')
-		);
+        if ($scope === 'system' || $role_name === 'system_admin') {
+            redirect('sys/dashboard');
+            return;
+        }
 
-		// Ambil total akun dan total jurnal
-		$data['total_akun'] = $this->akun->count_all();
-		$data['total_jurnal'] = $this->jurnal->count_all();
+        $this->require_tenant_scope();
 
-		$this->load->view('template/header');
-		$this->load->view('dashboard_view', $data);
-		$this->load->view('template/footer');
-	}
+        $this->render('dashboard/index', array(
+            'title' => 'Dashboard'
+        ));
+    }
 }
