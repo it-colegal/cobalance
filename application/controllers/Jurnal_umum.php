@@ -32,7 +32,7 @@ class Jurnal_umum extends MY_Controller
             $row[] = $journal->tanggal;
             $row[] = $journal->deskripsi;
             $row[] = $journal->referensi;
-            $row[] = '<a class="btn btn-sm btn-info" href="javascript:void(0)" title="Lihat Detail" onclick="view_detail(' . "'" . $journal->id_jurnal . "'" . ')';
+            $row[] = '<a class="btn btn-sm btn-info" href="javascript:void(0)" title="Lihat Detail" onclick="view_detail(' . "'" . $journal->id_jurnal . "'" . ')">
                         <i class="glyphicon glyphicon-eye-open"></i>
                       </a>';
             $data[] = $row;
