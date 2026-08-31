@@ -61,7 +61,7 @@
     function loadChart() {
         var end_date = $('#end_date').val();
         $.ajax({
-            url: "<?php echo site_url('bagan_akun/ajax_get_chart'); ?>",
+            url: "<?php echo site_url('akuntansi/bagan_akun/ajax_get_chart'); ?>",
             type: "POST",
             dataType: "JSON",
             data: { end_date: end_date },
@@ -113,7 +113,7 @@
 
     function exportPDF() {
         var end_date = $('#end_date').val();
-        window.open("<?php echo site_url('bagan_akun/export_pdf'); ?>?end_date=" + end_date, '_blank');
+        window.open("<?php echo site_url('akuntansi/bagan_akun/export_pdf'); ?>?end_date=" + end_date, '_blank');
     }
 
     // Muat data Bagan Akun saat halaman pertama kali dibuka
