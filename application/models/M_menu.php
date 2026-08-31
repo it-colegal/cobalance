@@ -13,10 +13,9 @@ class M_menu extends CI_Model
         // - app_menu: id_menu, menu_key, parent_id, nama_menu, route_path, icon_key, urutan,
         //             is_system_scope, is_tenant_scope, is_active
         // - app_permission: id_permission, id_menu, permission_key, action_key, is_active
-        // - app_role_permission: id_role_permission, id_role, id_permission, allowed, created_at, updated_at
+        // - app_role: id_role, role_name, role_scope, is_active
+        // - app_role_permission: id_role_permission, id_role, id_permission, allowed
 
-        $params = array();
-        
         // Determine visibility based on role_scope
         if ($role_scope === 'system') {
             $scopeWhere = " m.is_system_scope = 1 ";
@@ -36,23 +35,22 @@ class M_menu extends CI_Model
             FROM app_menu m
             INNER JOIN app_permission p
                 ON p.id_menu = m.id_menu
-               AND COALESCE(p.is_active,1) = 1
+               AND COALESCE(p.is_active, 1) = 1
             INNER JOIN app_role rr
-                ON rr.role_name = ?
-               AND COALESCE(rr.is_active,1) = 1
+                ON COALESCE(rr.is_active, 1) = 1
             INNER JOIN app_role_permission rp
                 ON rp.id_role = rr.id_role
                AND rp.id_permission = p.id_permission
-               AND COALESCE(rp.allowed,1) = 1
+               AND COALESCE(rp.allowed, 1) = 1
             WHERE
-                COALESCE(m.is_active,1) = 1
+                COALESCE(m.is_active, 1) = 1
                 AND {$scopeWhere}
-            ORDER BY COALESCE(m.parent_id,0), COALESCE(m.urutan,999), m.nama_menu
+                AND rr.role_name = ?
+            ORDER BY COALESCE(m.parent_id, 0), COALESCE(m.urutan, 999), m.nama_menu
         ";
 
-        $params[] = $role_name ?: 'staff';
-
-        $rows = $this->db->query($sql, $params)->result_array();
+        $role_name = $role_name ?: 'staff';
+        $rows = $this->db->query($sql, array($role_name))->result_array();
 
         if (empty($rows)) {
             return array();
