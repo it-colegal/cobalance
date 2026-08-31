@@ -7,6 +7,7 @@ class Bagan_akun extends MY_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->require_login();
         $this->load->model('M_bagan_akun', 'bagan');
         $this->load->helper('url');
     }
@@ -14,11 +15,11 @@ class Bagan_akun extends MY_Controller
     // Tampilkan halaman Bagan Akun dengan filter tanggal "as of"
     public function index()
     {
+        $this->require_tenant_scope();
+        
         // Default: hari ini sebagai tanggal "as of"
         $data['end_date'] = date('Y-m-d');
-        $this->load->view('template/header');
-        $this->load->view('bagan_akun_view', $data);
-        $this->load->view('template/footer');
+        $this->render('bagan_akun_view', $data);
     }
 
     // Ambil data Bagan Akun via AJAX berdasarkan tanggal "as of"

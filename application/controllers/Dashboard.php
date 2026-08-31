@@ -21,8 +21,6 @@ class Dashboard extends MY_Controller
 
         $this->require_tenant_scope();
 
-        $this->load->view('template/header', $this->viewData);
-        $this->load->view('dashboard_view');
-        $this->load->view('template/footer');
+        $this->render('dashboard_view');
     }
 }

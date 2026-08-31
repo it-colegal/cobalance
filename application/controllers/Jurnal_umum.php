@@ -7,15 +7,15 @@ class Jurnal_umum extends MY_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->require_login();
         $this->load->model('M_jurnal_umum', 'jurnal_umum');
         $this->load->helper('url');
     }
 
     public function index()
     {
-        $this->load->view('template/header');
-        $this->load->view('jurnal_umum_view');
-        $this->load->view('template/footer');
+        $this->require_tenant_scope();
+        $this->render('jurnal_umum_view');
     }
 
     public function ajax_list()
@@ -32,7 +32,7 @@ class Jurnal_umum extends MY_Controller
             $row[] = $journal->tanggal;
             $row[] = $journal->deskripsi;
             $row[] = $journal->referensi;
-            $row[] = '<a class="btn btn-sm btn-info" href="javascript:void(0)" title="Lihat Detail" onclick="view_detail(' . "'" . $journal->id_jurnal . "'" . ')">
+            $row[] = '<a class="btn btn-sm btn-info" href="javascript:void(0)" title="Lihat Detail" onclick="view_detail(' . "'" . $journal->id_jurnal . "'" . ')';
                         <i class="glyphicon glyphicon-eye-open"></i>
                       </a>';
             $data[] = $row;
