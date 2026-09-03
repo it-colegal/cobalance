@@ -7,7 +7,6 @@ class Buku_besar extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->require_login();
         $this->load->model('M_buku_besar', 'buku_besar');
         $this->load->model('M_akun', 'akun');
         $this->load->helper('url');
@@ -16,10 +15,10 @@ class Buku_besar extends MY_Controller
     // Tampilkan halaman Buku Besar dengan form filter
     public function index()
     {
-        $this->require_tenant_scope();
-        
         $data['akun_list'] = $this->akun->get_all();
-        $this->render('buku_besar_view', $data);
+        $this->load->view('template/header');
+        $this->load->view('buku_besar_view', $data);
+        $this->load->view('template/footer');
     }
 
     // Fungsi AJAX untuk mengambil data ledger berdasarkan filter

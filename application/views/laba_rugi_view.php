@@ -53,7 +53,7 @@
         var end_date = $('#end_date').val();
 
         $.ajax({
-            url: "<?php echo site_url('akuntansi/laba_rugi/ajax_get_laba_rugi'); ?>",
+            url: "<?php echo site_url('laba_rugi/ajax_get_laba_rugi'); ?>",
             type: "POST",
             dataType: "JSON",
             data: { start_date: start_date, end_date: end_date },
@@ -117,7 +117,7 @@
     function exportPDF() {
         var start_date = $('#start_date').val();
         var end_date = $('#end_date').val();
-        window.open("<?php echo site_url('akuntansi/laba_rugi/export_pdf'); ?>?start_date=" + start_date + "&end_date=" + end_date, '_blank');
+        window.open("<?php echo site_url('laba_rugi/export_pdf'); ?>?start_date=" + start_date + "&end_date=" + end_date, '_blank');
     }
 
     // Load laporan secara default saat halaman pertama kali dibuka

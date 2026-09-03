@@ -50,7 +50,7 @@
     function loadNeraca() {
         var end_date = $('#end_date').val();
         $.ajax({
-            url: "<?php echo site_url('akuntansi/neraca/ajax_get_neraca'); ?>",
+            url: "<?php echo site_url('neraca/ajax_get_neraca'); ?>",
             type: "POST",
             dataType: "JSON",
             data: { end_date: end_date },
@@ -132,7 +132,7 @@
 
     function exportPDF() {
         var end_date = $('#end_date').val();
-        window.open("<?php echo site_url('akuntansi/neraca/export_pdf'); ?>?end_date=" + end_date, '_blank');
+        window.open("<?php echo site_url('neraca/export_pdf'); ?>?end_date=" + end_date, '_blank');
     }
 
     // Muat data neraca saat halaman pertama kali dibuka

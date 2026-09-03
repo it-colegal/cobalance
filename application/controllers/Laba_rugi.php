@@ -7,7 +7,6 @@ class Laba_rugi extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->require_login();
         $this->load->model('M_laba_rugi', 'laba_rugi');
         $this->load->helper('url');
     }
@@ -15,12 +14,12 @@ class Laba_rugi extends MY_Controller
     // Tampilkan halaman laporan Laba Rugi
     public function index()
     {
-        $this->require_tenant_scope();
-        
         // Set default periode: bulan berjalan
         $data['start_date'] = date('Y-m-01');
         $data['end_date'] = date('Y-m-t');
-        $this->render('laba_rugi_view', $data);
+        $this->load->view('template/header');
+        $this->load->view('laba_rugi_view', $data);
+        $this->load->view('template/footer');
     }
 
     // Ambil data Laporan Laba Rugi via AJAX

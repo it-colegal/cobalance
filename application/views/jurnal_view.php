@@ -100,7 +100,7 @@
             "serverSide": true,
             "order": [[1, "desc"]],
             "ajax": {
-                "url": "<?php echo site_url('akuntansi/jurnal/ajax_list'); ?>",
+                "url": "<?php echo site_url('jurnal/ajax_list'); ?>",
                 "type": "POST"
             },
             "columnDefs": [
@@ -136,7 +136,7 @@
         $('#detail_table tbody').empty();
 
         $.ajax({
-            url: "<?php echo site_url('akuntansi/jurnal/ajax_edit/'); ?>" + id,
+            url: "<?php echo site_url('jurnal/ajax_edit/'); ?>" + id,
             type: "GET",
             dataType: "JSON",
             success: function (data) {
@@ -162,7 +162,7 @@
     function save() {
         $('#btnSave').text('Menyimpan...');
         $('#btnSave').attr('disabled', true);
-        var url = (save_method == 'add') ? "<?php echo site_url('akuntansi/jurnal/ajax_add'); ?>" : "<?php echo site_url('akuntansi/jurnal/ajax_update'); ?>";
+        var url = (save_method == 'add') ? "<?php echo site_url('jurnal/ajax_add'); ?>" : "<?php echo site_url('jurnal/ajax_update'); ?>";
 
         $.ajax({
             url: url,
@@ -186,7 +186,7 @@
     function delete_jurnal(id) {
         if (confirm('Apakah anda yakin akan menghapus data ini?')) {
             $.ajax({
-                url: "<?php echo site_url('akuntansi/jurnal/ajax_delete/'); ?>" + id,
+                url: "<?php echo site_url('jurnal/ajax_delete/'); ?>" + id,
                 type: "POST",
                 dataType: "JSON",
                 success: function (data) {

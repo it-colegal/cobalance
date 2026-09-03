@@ -42,7 +42,7 @@ class Jurnal extends MY_Controller
                       <a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="delete_jurnal(' . "'" . $jurnal->id_jurnal . "'" . ')">
                         <i class="glyphicon glyphicon-trash"></i>
                       </a>
-                      <a class="btn btn-sm btn-warning" target="_blank" href="' . site_url('akuntansi/jurnal/export_pdf/' . $jurnal->id_jurnal) . '" title="Export PDF">
+                      <a class="btn btn-sm btn-warning" target="_blank" href="' . site_url('jurnal/export_pdf/' . $jurnal->id_jurnal) . '" title="Export PDF">
                         <i class="glyphicon glyphicon-file"></i>
                       </a>';
             $data[] = $row;

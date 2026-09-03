@@ -7,17 +7,16 @@ class Akun extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->require_login();
         $this->load->model('M_akun', 'akun');
         $this->load->helper('url');
     }
 
     public function index()
     {
-        $this->require_tenant_scope();
-        
         $data['parent_list'] = $this->akun->get_all();
-        $this->render('akun_view', $data);
+        $this->load->view('template/header');
+        $this->load->view('akun_view', $data);
+        $this->load->view('template/footer');
     }
 
     public function ajax_list()
